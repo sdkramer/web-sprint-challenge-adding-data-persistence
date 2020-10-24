@@ -13,4 +13,23 @@ res.json(resources)
 
 })
 
+router.get('/resources/:id', async (req, res, next) => {
+  try {
+    const resource = await Resource.getResourceById(req.params.id)
+    res.json(resource)
+
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.post('/resources', async (req, res, next) => {
+  try {
+const resource = await Resource.addResource(req.body)
+res.status(201).json(resource)
+  } catch(err) {
+    next(err)
+  }
+})
+
 module.exports = router
