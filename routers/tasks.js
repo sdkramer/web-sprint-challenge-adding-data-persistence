@@ -14,5 +14,24 @@ try {
 }
 })
 
+router.get('/tasks/:id', async (req, res, next) => {
+  try {
+    const task = await Task.getTaskById(req.params.id)
+    res.json(task)
+
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.post('/tasks', async (req, res, next) => {
+  try {
+const task = await task.addTask(req.body)
+res.status(201).json(task)
+  } catch(err) {
+    next(err)
+  }
+})
+
 
 module.exports = router
