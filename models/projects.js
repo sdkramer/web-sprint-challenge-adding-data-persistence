@@ -10,10 +10,11 @@ function getProjectById(id) {
 }
 
 function addProject(data) {
-  return db('projects').insert(data)
+  return db('projects').insert(data, 'id').then(([id])=> getProjectById(id))
 }
 
 module.exports = {
   getProjects,
-  getProjectById
+  getProjectById,
+  addProject,
 }
